@@ -1,0 +1,136 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Getting Started with React Query",
+  "steps": [
+    {
+      "file": "src/index.js",
+      "description": "## Introduction\n\nThis is a basic example of how to get started with `React Query` to perform simple requests with minimal configuration. \n\nWe use `React Query` to interface with `PokeAPI`, a RESTful API that requires no authentication, which makes it ideal for documentation and learning purposes. Then, we use the fetched data to populate a simple `<PokeCard>` component.",
+      "line": 23
+    },
+    {
+      "file": "package.json",
+      "description": "## Setup\n\nFirst, we install `React Query` as any other NPM package:\n\n``` bash\n$ npm install react-query\n\n# or\n\n$ yarn add react-query\n```",
+      "line": 13,
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 30
+        }
+      }
+    },
+    {
+      "file": "src/index.js",
+      "description": "## QueryClient and QueryClientProvider\n\nOnce the `React Query` package has been installed, we create an instance of a `QueryClient` and provide it to our app (or perhaps just a specific section of the app) using a `QueryClientProvider`.",
+      "line": 17,
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 2
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## PokeCard Component\n\nOur objective is to populate a `<PokeCard>` component with data from `PokeAPI` to display a specific Pokemon's name and sprite. `React Query` will make this process considerably easier by handling the request status and data for us.",
+      "line": 39
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Preparing to Fetch Data\n\nNormally, we would use an asynchronous function to fetch data from an API, as indicated in this file. `React Query` requires this function to handle the status of our request.\n\nThis function **must return a Promise**, and it **must throw an error** to handle unsuccessful requests.",
+      "line": 16,
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 2
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Using the 'useQuery' Hook\n\nTo fetch the data, we first use the `useQuery` hook with the following parameters:\n\n* A unique query key (`'pokemon'`)\n* A pointer to our asynchronous query function (`fetchPokemon`)\n\nThe `useQuery` hook will return multiple useful properties that we can use to render our `<PokeCard>`. In this case, these properties are `data`, `isLoading`, `isError`, and `error`.\n\nIn most cases, we will use these properties in three steps:\n\n1. Check if the request `isLoading`.\n1. Check if the request has an `isError` status.\n1. Assume that the request is successful and we may finally use the returned `data`.",
+      "line": 22,
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 6
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Loading Status\n\nWe first check use the `isLoading` property to check if the request is in progress. We may use this boolean to display a `<Spinner>` for better UX.",
+      "line": 27,
+      "selection": {
+        "start": {
+          "line": 26,
+          "character": 1
+        },
+        "end": {
+          "line": 27,
+          "character": 65
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Error Status\n\nThen, we check if the request has not been successful (in which case, our fetching function will throw an error). We use the `isError` boolean to display an `<Alert>` with the `error` as a helpful notification to the user.",
+      "line": 29,
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 1
+        },
+        "end": {
+          "line": 29,
+          "character": 67
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Successful Request\n\nFinally, in most cases, one the request has made it past our `isLoading` and `isError` checks, we may assume that it has been successful. At this point, we can pass the `data` property to our `<PokeCardContent>` component to display our full card.>",
+      "line": 33,
+      "selection": {
+        "start": {
+          "line": 31,
+          "character": 1
+        },
+        "end": {
+          "line": 33,
+          "character": 24
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Editing the Example Request\n\nAs an additional exercise, try to change the `pokemonId` to fetch other Pokemon data, or edit the `pokeApiURL` to display the error alert. Keep an eye on how `React Query` and the card behave after each change (you may notice loading or cached data).\n",
+      "line": 6,
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 56
+        }
+      }
+    }
+  ]
+}
