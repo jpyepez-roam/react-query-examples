@@ -104,7 +104,7 @@
     },
     {
       "file": "src/components/PokeCard/PokeCard.js",
-      "description": "## Successful Request\n\nFinally, in most cases, one the request has made it past our `isLoading` and `isError` checks, we may assume that it has been successful. At this point, we can pass the `data` property to our `<PokeCardContent>` component to display our full card.>",
+      "description": "## Successful Request\n\nFinally, in most cases, once the request has made it past our `isLoading` and `isError` checks, we may assume that it has been successful. At this point, we can pass the `data` property to our `<PokeCardContent>` component to display our full card.>",
       "line": 33,
       "selection": {
         "start": {
