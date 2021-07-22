@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query'
 
-const pokeApiURL = 'https://pokeapi.co/api/v2/pokemon/'
+const pokeApiURL = 'https://pokeapi.co/api/v2/'
 
-const fetchPokemonById = async ({ queryKey }) => {
-    const response = await fetch(`${pokeApiURL}${queryKey[1]}`)
+const fetchPokeAPI = async ({ queryKey }) => {
+    const { endpoint, id } = queryKey[1]
+    const response = await fetch(`${pokeApiURL}${endpoint}/${id}`)
 
     if (!response.ok) {
         throw new Error('Unable to fetch data')
@@ -12,8 +13,8 @@ const fetchPokemonById = async ({ queryKey }) => {
     return response.json()
 }
 
-const usePokemon = (id) => {
-    const query = useQuery(['pokemon', id], fetchPokemonById)
+const usePokemon = (queryKey, config = {}) => {
+    const query = useQuery(queryKey, fetchPokeAPI, config)
 
     return { ...query }
 }
