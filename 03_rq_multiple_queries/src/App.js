@@ -4,6 +4,8 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import PokeForm from './components/PokeForm/PokeForm'
 import { useState } from 'react'
 import usePokemon from './hooks/usePokemon'
+import { useQueries } from 'react-query'
+import fetchPokeAPI from './utils/fetchPokeApi'
 
 // TODO: parallel and dependent queries
 // suggest next 3 pokemon
@@ -21,32 +23,42 @@ function App() {
             enabled: !!query.data,
         }
     )
+    // console.log(typeQuery.data?.pokemon?.length)
 
-    // TODO: transform to useQueries
-    const sug1 = typeQuery.data?.pokemon[4].pokemon.name
-    const sug2 = typeQuery.data?.pokemon[5].pokemon.name
-    const sug3 = typeQuery.data?.pokemon[6].pokemon.name
+    // TODO: random idx
+    const suggested_ids = [4, 6, 8]
 
-    const suggested1 = usePokemon(['sug1', { endpoint: 'pokemon', id: sug1 }], {
-        enabled: !!typeQuery.data,
+    const queries = suggested_ids.map((id, idx) => {
+        const pokeName = typeQuery.data?.pokemon[id].pokemon.name
+        return {
+            queryKey: [
+                `suggested_${idx}`,
+                {
+                    endpoint: 'pokemon',
+                    id: pokeName,
+                },
+            ],
+            queryFn: fetchPokeAPI,
+            enabled: !!typeQuery.data,
+        }
     })
-    const suggested2 = usePokemon(['sug2', { endpoint: 'pokemon', id: sug2 }], {
-        enabled: !!typeQuery.data,
-    })
-    const suggested3 = usePokemon(['sug3', { endpoint: 'pokemon', id: sug3 }], {
-        enabled: !!typeQuery.data,
-    })
+
+    const suggestedPokemon = useQueries(queries)
 
     return (
         <div className="App">
             <div className="main-container">
-                <PokeForm setId={setPokemonId} />
-                <PokeCard {...query} />
-                {suggested1.data && <PokeCard {...suggested1} />}
-                {suggested2.data && <PokeCard {...suggested2} />}
-                {suggested3.data && <PokeCard {...suggested3} />}
-                <ReactQueryDevtools />
+                <div>
+                    <PokeForm setId={setPokemonId} />
+                    <PokeCard {...query} />
+                </div>
+
+                {!!typeQuery.data &&
+                    suggestedPokemon.map((query, idx) => (
+                        <PokeCard {...query} key={idx} />
+                    ))}
             </div>
+            <ReactQueryDevtools />
         </div>
     )
 }
