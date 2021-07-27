@@ -26,3 +26,19 @@ body {
 }
 
 /* end of common styles */
+
+.flex-col {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+}
+
+h2 {
+    padding: 1rem;
+    text-align: center;
+}

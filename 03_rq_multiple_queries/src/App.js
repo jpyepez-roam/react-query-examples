@@ -2,15 +2,15 @@ import './App.css'
 import PokeCard from './components/PokeCard/PokeCard'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import PokeForm from './components/PokeForm/PokeForm'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import usePokemon from './hooks/usePokemon'
 import { useQueries } from 'react-query'
 import fetchPokeAPI from './utils/fetchPokeApi'
 
-// TODO: parallel and dependent queries
-// suggest next 3 pokemon
 function App() {
     const [pokemonId, setPokemonId] = useState(1)
+    const [randomIndices, setRandomIndices] = useState([])
+
     const query = usePokemon([
         'pokemon',
         { endpoint: 'pokemon', id: pokemonId },
@@ -23,13 +23,19 @@ function App() {
             enabled: !!query.data,
         }
     )
-    // console.log(typeQuery.data?.pokemon?.length)
 
-    // TODO: random idx
-    const suggested_ids = [4, 6, 8]
+    // get random indices upon completing dependent query
+    useEffect(() => {
+        if (typeQuery.isSuccess) {
+            const randNums = Array.from({ length: 3 }, (_) =>
+                Math.floor(20 * Math.random())
+            )
+            setRandomIndices(randNums)
+        }
+    }, [typeQuery.isSuccess])
 
-    const queries = suggested_ids.map((id, idx) => {
-        const pokeName = typeQuery.data?.pokemon[id].pokemon.name
+    const queries = randomIndices.map((id, idx) => {
+        const pokeName = typeQuery.data?.pokemon[id]?.pokemon.name
         return {
             queryKey: [
                 `suggested_${idx}`,
@@ -53,10 +59,15 @@ function App() {
                     <PokeCard {...query} />
                 </div>
 
-                {!!typeQuery.data &&
-                    suggestedPokemon.map((query, idx) => (
-                        <PokeCard {...query} key={idx} />
-                    ))}
+                <div className="flex-col">
+                    <h2>Suggested Pokemon</h2>
+                    <div className="flex-row">
+                        {!!typeQuery.data &&
+                            suggestedPokemon.map((query, idx) => (
+                                <PokeCard {...query} key={idx} />
+                            ))}
+                    </div>
+                </div>
             </div>
             <ReactQueryDevtools />
         </div>
