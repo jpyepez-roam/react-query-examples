@@ -2,20 +2,27 @@ import './App.css'
 import PokeCard from './components/PokeCard/PokeCard'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import PokeForm from './components/PokeForm/PokeForm'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import usePokemon from './hooks/usePokemon'
 import { useQueries } from 'react-query'
 import fetchPokeAPI from './utils/fetchPokeApi'
+import useRandomNumbers from './hooks/useRandomNumbers'
+
+// React Query: Multiple Queries
+// This app performs a search using a Pokemon ID and then suggests three Pokemon of the same type.
+// This occurs in three steps:
 
 function App() {
     const [pokemonId, setPokemonId] = useState(1)
-    const [randomIndices, setRandomIndices] = useState([])
 
+    // 1. Search for a Pokemon ID (using the PokeForm component)
     const query = usePokemon([
         'pokemon',
         { endpoint: 'pokemon', id: pokemonId },
     ])
 
+    // 2. Get the Pokemon type from the first query and perform
+    // another query to find Pokemon of the same type
     const pokemonType = query.data?.types[0].type.name
     const typeQuery = usePokemon(
         ['suggestedByType', { endpoint: 'type', id: pokemonType }],
@@ -24,15 +31,9 @@ function App() {
         }
     )
 
-    // get random indices upon completing dependent query
-    useEffect(() => {
-        if (typeQuery.isSuccess) {
-            const randNums = Array.from({ length: 3 }, (_) =>
-                Math.floor(20 * Math.random())
-            )
-            setRandomIndices(randNums)
-        }
-    }, [typeQuery.isSuccess])
+    // 3. Randomly select three of the received Pokemon from the second query
+    // and perform a final query to display three additional PokeCard components
+    const randomIndices = useRandomNumbers(typeQuery)
 
     const queries = randomIndices.map((id, idx) => {
         const pokeName = typeQuery.data?.pokemon[id]?.pokemon.name

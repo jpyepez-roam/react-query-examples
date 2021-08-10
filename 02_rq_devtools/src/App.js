@@ -7,8 +7,8 @@ function App() {
         <div className="App">
             <div className="main-container">
                 <PokeCard></PokeCard>
-                <ReactQueryDevtools />
             </div>
+            <ReactQueryDevtools />
         </div>
     )
 }

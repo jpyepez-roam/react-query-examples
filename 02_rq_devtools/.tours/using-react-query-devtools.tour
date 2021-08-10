@@ -1,0 +1,91 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Using React Query Devtools",
+  "steps": [
+    {
+      "file": "src/App.js",
+      "description": "## Introduction\n\nThis examples demonstrates how to set up and use the devtools that are included in the `React Query` library.\n\nWe build upon our first example (`01_rq_getting_started`) to further take advantage of this library's monitoring and debugging capabilities.",
+      "line": 17
+    },
+    {
+      "file": "src/index.js",
+      "description": "## Setup\n\nSimilarly to our first example, we have set up our `QueryClient` and `QueryClientProvider`. However, we have implemented a few changes to keep our code organised.",
+      "line": 14,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 31
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Custom usePokemon Hook\n\nFirst, we have removed all data-fetching logic from our `PokeCard` component. Instead, we now use a custom `usePokemon` hook, which returns our `React Query` properties.",
+      "line": 6,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 64
+        }
+      }
+    },
+    {
+      "file": "src/hooks/usePokemon.js",
+      "description": "## Query Keys as Parameters\n\nThe `usePokemon` hook takes a pokemon id as a parameter, which is then added to the `useQuery` hook's `queryKey`. This change makes it easy for different components to potentially perform different queries by simply replacing this parameter.",
+      "line": 19,
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 2
+        }
+      }
+    },
+    {
+      "file": "src/hooks/usePokemon.js",
+      "description": "## Query Function\n\nAdditionally, we slightly modify our query function to take our `queryKey` (which is passed by default by the `useQuery` hook) instead of the pokemon ID alone. Our app is now able to keep track of different queries, each with their unique `queryKey` independently.",
+      "line": 6,
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 64
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## React Query Devtools\n\nUsing the built-in devtools is as simple as adding the `ReactyQueryDevtools` component besides our `App` or our main app components. It **must be placed inside the `QueryClientProvider`**.\n\nThis integrates the devtools panel in **floating mode**. Alternatively, we may use the `ReactQueryDevtoolsPanel` component to include the devtools in **embedded mode**, which may use custom styles.",
+      "line": 11
+    },
+    {
+      "file": "src/components/PokeCard/PokeCard.js",
+      "description": "## Using React Query Devtools\n\nThe `React Query Devtools` panel makes it easy to monitor and debug our applications by observing the behaviour of each query while running our app. It also enables us to manipulate the status and actions of the tracked queries.\n\nAs a final exercise, while running the app, try to replace the Pokemon ID parameter that is passed to the custom `usePokemon` hook. Use the devtools to observe and interact with each query as it is added to the query list.",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 23,
+          "character": 24
+        }
+      }
+    }
+  ]
+}
