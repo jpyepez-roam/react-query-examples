@@ -1,0 +1,37 @@
+/* common styles */
+
+/* Border box declaration */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Geneva, sans-serif;
+}
+
+/* end of common styles */
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+.index-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    flex: 1;
+}
