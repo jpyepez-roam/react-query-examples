@@ -1,6 +1,6 @@
 const pokeApiURL = 'https://pokeapi.co/api/v2/'
 
-const fetchPokeAPI = async ({ queryKey }) => {
+const fetchPokeAPIPage = async ({ queryKey }) => {
     const offset = 20 * queryKey[1]
     const response = await fetch(`${pokeApiURL}pokemon?offset=${offset}`)
 
@@ -11,4 +11,4 @@ const fetchPokeAPI = async ({ queryKey }) => {
     return response.json()
 }
 
-export default fetchPokeAPI
+export default fetchPokeAPIPage

@@ -35,3 +35,20 @@ h1 {
     gap: 2rem;
     flex: 1;
 }
+
+.spinner-container {
+    display: grid;
+    place-items: center;
+    flex: 1;
+}
+
+.index-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8rem;
+}
+
+.index-nav button {
+    flex-basis: 16rem;
+}

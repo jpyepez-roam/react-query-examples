@@ -1,13 +1,12 @@
 import React from 'react'
 import { Card, Spinner } from 'react-bootstrap'
 
-// TODO: turn card into component
-// make spinner component
-// grid is own component (card content)
 const PokeIndex = ({ query }) => {
+    const { isLoading } = query
+    const containerClass = isLoading ? 'spinner' : 'index'
     return (
-        <Card className="p-4 m-5 index-container">
-            {query.isLoading ? (
+        <Card className={`p-4 mx-5 ${containerClass}-container`}>
+            {isLoading ? (
                 <Spinner animation="border" variant="primary" />
             ) : (
                 query.data?.results.map((res) => (
