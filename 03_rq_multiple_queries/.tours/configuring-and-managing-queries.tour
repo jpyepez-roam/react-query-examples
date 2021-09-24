@@ -1,0 +1,131 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Configuring and Managing Queries",
+  "steps": [
+    {
+      "file": "src/App.js",
+      "description": "## Introduction\n\nIn this example, we take our basic React Query setup from our first two guides and we extend it to build a simple \"Recommended Pokemon App\". In this case, we take advantage of React Query's hooks to manage dependent and parallel queries.",
+      "line": 78,
+      "selection": {
+        "start": {
+          "line": 78,
+          "character": 1
+        },
+        "end": {
+          "line": 78,
+          "character": 19
+        }
+      }
+    },
+    {
+      "file": "src/utils/fetchPokeApi.js",
+      "description": "## Fetching Data\n\nTo recap, we have our query function, which is flexible enough to receive an `endpoint` and `id` from our `queryKey`. As we discussed previously, the `useQuery` hook passes this `queryKey` to our `fetchPokeAPI` function by default.\n\nAs indicated in the PokeAPI docs, we will use the `endpoint` and `id` props to look up either a Pokemon, or a group of Pokemon of a specific type.",
+      "line": 14,
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 28
+        }
+      }
+    },
+    {
+      "file": "src/hooks/usePokemon.js",
+      "description": "## Custom Hook\n\nSimilarly, we use our custom `usePokemon` hook to call our query function and to manage the requested data.",
+      "line": 10,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 26
+        }
+      }
+    },
+    {
+      "file": "src/components/PokeForm/PokeForm.js",
+      "description": "## Pokemon Search\n\nAs a user, our first step would be to input the Pokedex number (`id`) of a Pokemon we'd like to request. We use our new `PokeForm` component to do this.",
+      "line": 28,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 28,
+          "character": 24
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Query 1: Get requested Pokemon\n\nOnce we have specified a Pokemon ID, our app performs the first request, which receives the data from PokeAPI and populates our first `PokeCard`.",
+      "line": 22,
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 7
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Query 2: Find more Pokemon of the same type\n\nOne the first request is successful, the `query.data` object is initialised, which enables our second query (a **dependent query**). This query uses the Pokemon type found in `query.data` to request more Pokemon of the same type. PokeAPI should return a list of 20 Pokemon.",
+      "line": 32,
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 1
+        },
+        "end": {
+          "line": 32,
+          "character": 6
+        }
+      }
+    },
+    {
+      "file": "src/index.js",
+      "description": "## Managing Queries\n\nThis example shows how we start to take advantage of React Query for more complex data fetching flows.\n\nTo further explore React Query, try to come up with other fun ways to suggest Pokemon (by location, moves, evolution chains, etc.). Try to come up with your own custom hooks, or extend the UI to display any additional information received in our requests.",
+      "line": 15,
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 15,
+          "character": 25
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Select Three Random Pokemon\n\nUpon receiving the list of Pokemon of the same type, we use another custom hook to randomly select three Pokemon.",
+      "line": 36
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Query 3: Request Suggested Pokemon\n\nFinally, we take advantage of the `useQueries` hook to perform **parallel queries**, and request the data for our randomly selected Pokemon. We use this data to populate our `PokeCards` under the \"Suggested Pokemon\" section.",
+      "line": 53,
+      "selection": {
+        "start": {
+          "line": 38,
+          "character": 1
+        },
+        "end": {
+          "line": 53,
+          "character": 49
+        }
+      }
+    }
+  ]
+}
