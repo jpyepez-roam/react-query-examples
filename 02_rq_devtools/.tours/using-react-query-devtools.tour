@@ -74,7 +74,7 @@
     },
     {
       "file": "src/components/PokeCard/PokeCard.js",
-      "description": "## Using React Query Devtools\n\nThe `React Query Devtools` panel makes it easy to monitor and debug our applications by observing the behaviour of each query while running our app. It also enables us to manipulate the status and actions of the tracked queries.\n\nAs a final exercise, while running the app, try to replace the Pokemon ID parameter that is passed to the custom `usePokemon` hook. Use the devtools to observe and interact with each query as it is added to the query list.",
+      "description": "## Conclusion\n\nThe `React Query Devtools` panel makes it easy to monitor and debug our applications by observing the behaviour of each query while running our app. It also enables us to manipulate the status and actions of the tracked queries.\n\nAs a final exercise, while running the app, try to replace the Pokemon ID parameter that is passed to the custom `usePokemon` hook. Use the devtools to observe and interact with each query as it is added to the query list.",
       "line": 23,
       "selection": {
         "start": {

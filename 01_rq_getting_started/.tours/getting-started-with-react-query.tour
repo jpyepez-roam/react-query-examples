@@ -119,7 +119,7 @@
     },
     {
       "file": "src/components/PokeCard/PokeCard.js",
-      "description": "## Editing the Example Request\n\nAs an additional exercise, try to change the `pokemonId` to fetch other Pokemon data, or edit the `pokeApiURL` to display the error alert. Keep an eye on how `React Query` and the card behave after each change (you may notice loading or cached data).\n",
+      "description": "## Conclusion\n\nWe have reviewed an initial example with a simple way to add React Query to a small app.\n\nAs an additional exercise, try to change the `pokemonId` to fetch other Pokemon data, or edit the `pokeApiURL` to display the error alert. Keep an eye on how `React Query` and the card behave after each change (you may notice loading or cached data).\n",
       "line": 6,
       "selection": {
         "start": {

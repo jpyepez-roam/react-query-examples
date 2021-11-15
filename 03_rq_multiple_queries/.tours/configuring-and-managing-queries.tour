@@ -79,7 +79,7 @@
     },
     {
       "file": "src/App.js",
-      "description": "## Query 2: Find more Pokemon of the same type\n\nOne the first request is successful, the `query.data` object is initialised, which enables our second query (a **dependent query**). This query uses the Pokemon type found in `query.data` to request more Pokemon of the same type. PokeAPI should return a list of 20 Pokemon.",
+      "description": "## Query 2: Find more Pokemon of the same type\n\nOnce the first request is successful, the `query.data` object is initialised, which enables our second query (a **dependent query**). This query uses the Pokemon type found in `query.data` to request more Pokemon of the same type. PokeAPI should return a list of 20 Pokemon.",
       "line": 32,
       "selection": {
         "start": {
@@ -89,21 +89,6 @@
         "end": {
           "line": 32,
           "character": 6
-        }
-      }
-    },
-    {
-      "file": "src/index.js",
-      "description": "## Managing Queries\n\nThis example shows how we start to take advantage of React Query for more complex data fetching flows.\n\nTo further explore React Query, try to come up with other fun ways to suggest Pokemon (by location, moves, evolution chains, etc.). Try to come up with your own custom hooks, or extend the UI to display any additional information received in our requests.",
-      "line": 15,
-      "selection": {
-        "start": {
-          "line": 11,
-          "character": 1
-        },
-        "end": {
-          "line": 15,
-          "character": 25
         }
       }
     },
@@ -124,6 +109,21 @@
         "end": {
           "line": 53,
           "character": 49
+        }
+      }
+    },
+    {
+      "file": "src/index.js",
+      "description": "## Conclusion\n\nThis example shows how we start to take advantage of React Query for more complex data fetching flows.\n\nTo further explore React Query, we could try to come up with other fun ways to suggest Pokemon (by location, moves, evolution chains, etc.). Among other interesting exercises, we could also create own custom hooks, or extend the UI to display any additional information received in our requests.",
+      "line": 15,
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 15,
+          "character": 25
         }
       }
     }

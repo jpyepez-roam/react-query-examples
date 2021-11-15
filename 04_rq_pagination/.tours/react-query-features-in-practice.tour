@@ -1,0 +1,146 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "React Query Features in Practice",
+  "steps": [
+    {
+      "file": "src/App.js",
+      "description": "## Introduction\n\nThis example illustrates how to implement pagination, a common UI pattern, using React Query. With React Query's hooks, we can not only fetch and track the API data easily, but we can also implement features and behavoiurs to enhance user experience.",
+      "line": 40,
+      "selection": {
+        "start": {
+          "line": 40,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 19
+        }
+      }
+    },
+    {
+      "file": "src/utils/fetchPokeApiPage.js",
+      "description": "## Fetching Pages\n\nSimilarly to our previous guides, we use a query function to request the data. In this case, however, instead of fetching information on a single Pokemon or its characteristics, we query the API for an endpoint with a list of all available Pokemon. ",
+      "line": 16,
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 32
+        }
+      }
+    },
+    {
+      "file": "src/utils/fetchPokeApiPage.js",
+      "description": "## Fetching Pages: Offset\n\nIt is important to note that our endpoint takes an `offset` parameter, which indicates our current position on the list. The API the returns the corresponding Pokemon, 20 results at a time.",
+      "line": 5,
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 5,
+          "character": 76
+        }
+      }
+    },
+    {
+      "file": "src/hooks/usePokemonPage.js",
+      "description": "## Custom Hook\n\nAgain, we implement a custom hook to handle our requests and return the results to any parts of the App that might need them.",
+      "line": 10,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 1
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## App Structure\n\nThis simple app consists of two main sections:\n\n* A `PokeIndex` component, which displays a grid of `PokeCard` components with the name of each Pokemon, according to the current requested page.\n* A `PokeIndexNav` component to enable us to navigate across each page of our list.",
+      "line": 35,
+      "selection": {
+        "start": {
+          "line": 30,
+          "character": 1
+        },
+        "end": {
+          "line": 34,
+          "character": 33
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Page Queries\n\nAs usual, we use our custom hook to request the data from the API. In this case, we use a page number (or page id) which will be used in the `offset` parameter of our endpoint, and will help React Query cache each one of our requests.\n\nAdditionally, we use this page number to indicate the current page in our `PokeIndexNav` component.",
+      "line": 22,
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 7
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Query Results\n\nSimilarly to our previous examples, we use the resulting `query` object to populate our UI. The `PokeIndex` component uses the returned data to display the resulting cards, as well as any loading indicators that might be needed.",
+      "line": 30,
+      "selection": {
+        "start": {
+          "line": 30,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 44
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Improved Pagination\n\nHowever, as a user, having to looks at a loading spinner every time you navigate to the next page is far from the ideal experience. To improve this, React Query makes it easy to implement an improved pagination pattern which prefetches an upcoming page before the user reaches it.\n\nFor readability, this logic is wrapped inside the `useEffectWithPrefetch` custom query, which is nothing more than a `useEffect` hook wrapper.",
+      "line": 24,
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 1
+        },
+        "end": {
+          "line": 24,
+          "character": 32
+        }
+      }
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Conclusion\n\nThis is a simple approach that might considerably improve our app's user experience. However, when considering React Query for our app, it is important to consider:\n\n* What is the purpose of the feature we'd like to implement\n* If the feature is worth the addition of this library\n* What is the best approach to implement the desired design pattern (pagination, infinite scrolling, etc.) into our codebase.\n\nAs an extra challenge, try to think about how you could leverage additional queries to extend this app. Here are a few ideas:\n\n* On card hover, we could display a tooltip with specific information for each Pokemon.\n* On card click, we could display a modal with a brief Pokemon \"profile\".\n* We could implement a state management system to select and highlight our favorite Pokemon.",
+      "line": 18
+    },
+    {
+      "file": "src/App.js",
+      "description": "## Prefetch Data\n\nIn this example, our app requests the first page (offset: 0) and prefetches the following page at the same time (offset: 1). Then, every time the user navigates to the next page, our `queryClient` requests the current page, plus one.\n\nIn React Query, we do this by accessing our `queryClient` with the `useQueryClient` hook. We can then use the `queryClient`'s `prefetchQuery` method to preemptively request each \"next page\" every time our `page` state changes.\n\nNormally, this is likely to allow users to navigate without finding any loading spinners, as long a they are still reading the page content while the prefetch request is completed. For testing and learning purposes, if you rapidly click the `Next Page` button multiple times, you should be able to see the spinner right after the prefetched page.",
+      "line": 15,
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 1
+        },
+        "end": {
+          "line": 15,
+          "character": 28
+        }
+      }
+    }
+  ]
+}
